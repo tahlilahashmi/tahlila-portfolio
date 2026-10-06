@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tahlila Hashmi | Professional Portfolio & Web Development</title>
+    <title>Tahlila Hashmi | Professional Web Developer & Digital Studio</title>
+
+    <meta name="description"
+          content="Tahlila Hashmi — professional web development, modern portfolios, e-commerce stores, custom web applications and digital solutions.">
+
+    <meta name="author" content="Tahlila Hashmi">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Security / Browser Policy -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- AOS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 
     <!-- Font Awesome -->
     <link rel="stylesheet"
@@ -31,13 +43,14 @@
                             700: '#1f2937'
                         }
                     },
+
                     fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
                         luxury: ['Playfair Display', 'serif']
                     }
                 }
             }
-        }
+        };
     </script>
 
     <style>
@@ -46,14 +59,59 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
+            margin: 0;
             background: #0a0f1d;
             color: #f3f4f6;
             overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font-family: inherit;
         }
 
         /* =========================
-           FLOATING LUXURY PARTICLES
+           ACCESSIBILITY
+        ========================== */
+
+        :focus-visible {
+            outline: 2px solid #60a5fa;
+            outline-offset: 4px;
+        }
+
+        /* =========================
+           SCROLL PROGRESS
+        ========================== */
+
+        #scrollProgress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(
+                90deg,
+                #3b82f6,
+                #818cf8,
+                #22d3ee
+            );
+            z-index: 9999;
+        }
+
+        /* =========================
+           FLOATING PARTICLES
         ========================== */
 
         #petals-container {
@@ -79,8 +137,12 @@
         }
 
         @keyframes floatPetal {
+
             0% {
-                transform: translateY(-10vh) rotate(0deg);
+                transform:
+                    translateY(-10vh)
+                    rotate(0deg);
+
                 opacity: 0;
             }
 
@@ -89,7 +151,10 @@
             }
 
             100% {
-                transform: translateY(110vh) rotate(360deg);
+                transform:
+                    translateY(110vh)
+                    rotate(360deg);
+
                 opacity: 0;
             }
         }
@@ -101,27 +166,54 @@
         .glass-card {
             background: rgba(17,24,39,.76);
             backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border: 1px solid rgba(59,130,246,.20);
             transition: .35s ease;
         }
 
         .glass-card:hover {
             border-color: rgba(59,130,246,.55);
+
             box-shadow:
                 0 0 35px rgba(59,130,246,.18),
                 inset 0 0 25px rgba(59,130,246,.04);
+
             transform: translateY(-4px);
         }
 
         .network-bg {
             position: relative;
             overflow: hidden;
+
             background:
                 radial-gradient(
                     circle at center,
                     #172033 0%,
                     #0a0f1d 75%
                 );
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================== */
+
+        .nav-scrolled {
+            background: rgba(10,15,29,.94) !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,.25);
+        }
+
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition:
+                max-height .35s ease,
+                opacity .35s ease;
+        }
+
+        .mobile-menu.open {
+            max-height: 500px;
+            opacity: 1;
         }
 
         /* =========================
@@ -132,17 +224,22 @@
             position: absolute;
             inset: 5%;
             border-radius: 40px;
+
             background:
                 radial-gradient(
                     circle,
                     rgba(59,130,246,.22),
                     transparent 65%
                 );
+
             filter: blur(25px);
-            animation: pcGlow 4s ease-in-out infinite;
+
+            animation:
+                pcGlow 4s ease-in-out infinite;
         }
 
         @keyframes pcGlow {
+
             0%,100% {
                 opacity: .5;
                 transform: scale(.95);
@@ -162,6 +259,7 @@
             position: relative;
             width: 100%;
             height: 360px;
+
             display: flex;
             justify-content: center;
             align-items: center;
@@ -170,48 +268,73 @@
         .pc-part {
             position: absolute;
             opacity: 0;
-            filter: drop-shadow(0 0 12px rgba(59,130,246,.5));
+
+            filter:
+                drop-shadow(
+                    0 0 12px
+                    rgba(59,130,246,.5)
+                );
         }
 
         .monitor-part {
             width: 220px;
             height: 145px;
+
             border: 3px solid #60a5fa;
             border-radius: 12px;
+
             background:
                 linear-gradient(
                     135deg,
                     rgba(30,64,175,.35),
                     rgba(15,23,42,.9)
                 );
+
             box-shadow:
                 inset 0 0 25px rgba(59,130,246,.15),
                 0 0 25px rgba(59,130,246,.35);
+
             top: 35px;
             left: 50%;
-            transform: translateX(-50%) translateY(-130px) scale(.6);
-            animation: monitorBuild 1.8s forwards 1s;
+
+            transform:
+                translateX(-50%)
+                translateY(-130px)
+                scale(.6);
+
+            animation:
+                monitorBuild 1.8s
+                forwards 1s;
         }
 
         .monitor-screen {
             position: absolute;
             inset: 10px;
+
             border-radius: 7px;
+
             background:
                 radial-gradient(
                     circle at 50% 50%,
                     rgba(59,130,246,.35),
                     #050b16
                 );
+
             overflow: hidden;
         }
 
         .screen-line {
             position: absolute;
+
             height: 2px;
+
             background: #60a5fa;
-            box-shadow: 0 0 8px #60a5fa;
-            animation: screenLine 2s infinite;
+
+            box-shadow:
+                0 0 8px #60a5fa;
+
+            animation:
+                screenLine 2s infinite;
         }
 
         .line1 {
@@ -235,6 +358,7 @@
         }
 
         @keyframes screenLine {
+
             0%,100% {
                 opacity: .25;
                 transform: scaleX(.7);
@@ -249,58 +373,95 @@
         .monitor-stand {
             width: 35px;
             height: 65px;
-            background: linear-gradient(
-                90deg,
-                #1e293b,
-                #60a5fa,
-                #1e293b
-            );
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #1e293b,
+                    #60a5fa,
+                    #1e293b
+                );
+
             top: 174px;
             left: 50%;
-            transform: translateX(-50%) translateY(70px) scale(.5);
+
+            transform:
+                translateX(-50%)
+                translateY(70px)
+                scale(.5);
+
             border-radius: 5px;
-            animation: standBuild 1.2s forwards 2.3s;
+
+            animation:
+                standBuild 1.2s
+                forwards 2.3s;
         }
 
         .monitor-base {
             width: 100px;
             height: 10px;
+
             background: #334155;
+
             border: 1px solid #60a5fa;
             border-radius: 10px;
+
             top: 232px;
             left: 50%;
-            transform: translateX(-50%) scale(.3);
-            animation: baseBuild 1s forwards 2.8s;
+
+            transform:
+                translateX(-50%)
+                scale(.3);
+
+            animation:
+                baseBuild 1s
+                forwards 2.8s;
         }
 
         .cpu-tower {
             width: 62px;
             height: 135px;
+
             right: 9%;
             top: 95px;
+
             border-radius: 8px;
             border: 2px solid #60a5fa;
+
             background:
                 linear-gradient(
                     135deg,
                     #172033,
                     #0f172a
                 );
+
             box-shadow:
                 0 0 22px rgba(59,130,246,.3),
                 inset 0 0 20px rgba(59,130,246,.1);
-            transform: translateX(100px) rotate(15deg) scale(.5);
-            animation: towerBuild 1.5s forwards 3.3s;
+
+            transform:
+                translateX(100px)
+                rotate(15deg)
+                scale(.5);
+
+            animation:
+                towerBuild 1.5s
+                forwards 3.3s;
         }
 
         .cpu-light {
             position: absolute;
+
             width: 5px;
             height: 5px;
+
             border-radius: 50%;
+
             background: #22d3ee;
-            box-shadow: 0 0 10px #22d3ee;
+
+            box-shadow:
+                0 0 10px #22d3ee;
+
             left: 10px;
         }
 
@@ -319,18 +480,29 @@
         .keyboard-part {
             width: 175px;
             height: 45px;
+
             bottom: 38px;
             left: 50%;
+
             border-radius: 8px;
             border: 1px solid #60a5fa;
+
             background: #111827;
-            transform: translateX(-50%) translateY(100px) rotateX(70deg);
-            animation: keyboardBuild 1.5s forwards 4s;
+
+            transform:
+                translateX(-50%)
+                translateY(100px)
+                rotateX(70deg);
+
+            animation:
+                keyboardBuild 1.5s
+                forwards 4s;
         }
 
         .keyboard-keys {
             position: absolute;
             inset: 7px;
+
             background:
                 repeating-linear-gradient(
                     90deg,
@@ -342,305 +514,218 @@
                     #334155 0 7px,
                     transparent 7px 10px
                 );
+
             opacity: .7;
         }
 
         .mouse-part {
             width: 28px;
             height: 42px;
+
             border: 2px solid #60a5fa;
-            border-radius: 15px 15px 13px 13px;
+            border-radius:
+                15px 15px
+                13px 13px;
+
             background: #111827;
+
             bottom: 32px;
             right: 18%;
-            transform: translateY(80px) rotate(15deg) scale(.5);
-            animation: mouseBuild 1.3s forwards 4.5s;
+
+            transform:
+                translateY(80px)
+                rotate(15deg)
+                scale(.5);
+
+            animation:
+                mouseBuild 1.3s
+                forwards 4.5s;
         }
 
         .mouse-part::after {
             content: "";
+
             position: absolute;
+
             width: 4px;
             height: 10px;
+
             border-radius: 5px;
+
             background: #60a5fa;
+
             top: 8px;
             left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 8px #60a5fa;
+
+            transform:
+                translateX(-50%);
+
+            box-shadow:
+                0 0 8px #60a5fa;
         }
 
         @keyframes monitorBuild {
+
             to {
                 opacity: 1;
-                transform: translateX(-50%) translateY(0) scale(1);
+
+                transform:
+                    translateX(-50%)
+                    translateY(0)
+                    scale(1);
             }
         }
 
         @keyframes standBuild {
+
             to {
                 opacity: 1;
-                transform: translateX(-50%) translateY(0) scale(1);
+
+                transform:
+                    translateX(-50%)
+                    translateY(0)
+                    scale(1);
             }
         }
 
         @keyframes baseBuild {
+
             to {
                 opacity: 1;
-                transform: translateX(-50%) scale(1);
+
+                transform:
+                    translateX(-50%)
+                    scale(1);
             }
         }
 
         @keyframes towerBuild {
+
             to {
                 opacity: 1;
-                transform: translateX(0) rotate(0) scale(1);
+
+                transform:
+                    translateX(0)
+                    rotate(0)
+                    scale(1);
             }
         }
 
         @keyframes keyboardBuild {
+
             to {
                 opacity: 1;
-                transform: translateX(-50%) translateY(0) rotateX(0);
+
+                transform:
+                    translateX(-50%)
+                    translateY(0)
+                    rotateX(0);
             }
         }
 
         @keyframes mouseBuild {
+
             to {
                 opacity: 1;
-                transform: translateY(0) rotate(0) scale(1);
+
+                transform:
+                    translateY(0)
+                    rotate(0)
+                    scale(1);
             }
         }
 
         /* =========================
-           CARD ANIMATIONS
+           BUTTON EFFECT
         ========================== */
 
-        .orbit-animation {
-            position: absolute;
-            width: 120px;
-            height: 120px;
-            border: 1px solid rgba(96,165,250,.6);
-            border-radius: 50%;
-            animation: orbitRotate 6s linear infinite;
-        }
-
-        .orbit-animation::before,
-        .orbit-animation::after {
-            content: "";
-            position: absolute;
-            border-radius: 50%;
-            background: #60a5fa;
-            box-shadow: 0 0 15px #60a5fa;
-        }
-
-        .orbit-animation::before {
-            width: 8px;
-            height: 8px;
-            top: 0;
-            left: 50%;
-        }
-
-        .orbit-animation::after {
-            width: 6px;
-            height: 6px;
-            bottom: 15px;
-            right: 0;
-        }
-
-        .orbit2 {
-            width: 85px;
-            height: 85px;
-            animation-direction: reverse;
-            animation-duration: 4s;
-        }
-
-        @keyframes orbitRotate {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* DATA STREAM */
-
-        .data-stream {
-            position: absolute;
-            inset: 0;
+        .shine-btn {
+            position: relative;
             overflow: hidden;
         }
 
-        .data-line {
-            position: absolute;
-            height: 2px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                #818cf8,
-                transparent
-            );
-            box-shadow: 0 0 10px #818cf8;
-            animation: dataMove 2s linear infinite;
-        }
+        .shine-btn::before {
+            content: "";
 
-        .data-line:nth-child(1) {
-            top: 25%;
+            position: absolute;
+            top: 0;
+            left: -120%;
+
             width: 70%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.25),
+                    transparent
+                );
+
+            transform: skewX(-20deg);
+
+            transition: .7s;
         }
 
-        .data-line:nth-child(2) {
-            top: 45%;
-            width: 50%;
-            animation-delay: .5s;
+        .shine-btn:hover::before {
+            left: 140%;
         }
 
-        .data-line:nth-child(3) {
-            top: 65%;
-            width: 80%;
-            animation-delay: 1s;
-        }
+        /* =========================
+           RESPONSIVE PC
+        ========================== */
 
-        .data-line:nth-child(4) {
-            top: 80%;
-            width: 40%;
-            animation-delay: 1.5s;
-        }
+        @media(max-width:640px) {
 
-        @keyframes dataMove {
-            from {
-                transform: translateX(-120%);
+            .pc-parts {
+                height: 300px;
             }
 
-            to {
-                transform: translateX(220%);
-            }
-        }
-
-        /* 3D CUBE */
-
-        .cube {
-            width: 75px;
-            height: 75px;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: cubeRotate 7s linear infinite;
-        }
-
-        .cube-face {
-            position: absolute;
-            width: 75px;
-            height: 75px;
-            border: 1px solid #22d3ee;
-            background: rgba(6,182,212,.08);
-            box-shadow: inset 0 0 20px rgba(6,182,212,.15);
-        }
-
-        .front {
-            transform: translateZ(37px);
-        }
-
-        .back {
-            transform: rotateY(180deg) translateZ(37px);
-        }
-
-        .right {
-            transform: rotateY(90deg) translateZ(37px);
-        }
-
-        .left {
-            transform: rotateY(-90deg) translateZ(37px);
-        }
-
-        .top {
-            transform: rotateX(90deg) translateZ(37px);
-        }
-
-        .bottom {
-            transform: rotateX(-90deg) translateZ(37px);
-        }
-
-        @keyframes cubeRotate {
-            from {
-                transform: rotateX(0) rotateY(0) rotateZ(0);
+            .monitor-part {
+                width: 175px;
+                height: 115px;
             }
 
-            to {
-                transform: rotateX(360deg) rotateY(360deg) rotateZ(180deg);
+            .monitor-stand {
+                top: 150px;
+            }
+
+            .monitor-base {
+                top: 208px;
+            }
+
+            .cpu-tower {
+                right: 4%;
+                transform:
+                    translateX(70px)
+                    rotate(15deg)
+                    scale(.4);
+            }
+
+            .keyboard-part {
+                width: 145px;
+                bottom: 25px;
+            }
+
+            .mouse-part {
+                right: 8%;
+                bottom: 22px;
             }
         }
 
         /* =========================
-           PORTFOLIO CHART
+           REDUCED MOTION
         ========================== */
 
-        .chart {
-            display: flex;
-            align-items: flex-end;
-            gap: 10px;
-            height: 120px;
-        }
+        @media(prefers-reduced-motion: reduce) {
 
-        .bar {
-            width: 18px;
-            border-radius: 5px 5px 0 0;
-            background: linear-gradient(
-                to top,
-                #1d4ed8,
-                #60a5fa
-            );
-            box-shadow: 0 0 12px rgba(59,130,246,.4);
-            animation: barGrow 2s ease-in-out infinite alternate;
-        }
-
-        .bar:nth-child(1) { height: 35%; }
-        .bar:nth-child(2) { height: 55%; animation-delay: .2s; }
-        .bar:nth-child(3) { height: 45%; animation-delay: .4s; }
-        .bar:nth-child(4) { height: 75%; animation-delay: .6s; }
-        .bar:nth-child(5) { height: 95%; animation-delay: .8s; }
-        .bar:nth-child(6) { height: 70%; animation-delay: 1s; }
-
-        @keyframes barGrow {
-            from {
-                transform: scaleY(.65);
-            }
-
-            to {
-                transform: scaleY(1);
-            }
-        }
-
-        /* =========================
-           E-COMMERCE RINGS
-        ========================== */
-
-        .shop-ring {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 2px solid rgba(129,140,248,.7);
-            box-shadow:
-                0 0 20px rgba(129,140,248,.25),
-                inset 0 0 20px rgba(129,140,248,.12);
-            animation: shopSpin 5s linear infinite;
-        }
-
-        .shop-ring::after {
-            content: "SHOP";
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            margin: 20px;
-            border: 1px solid #818cf8;
-            color: #a5b4fc;
-            font-size: 10px;
-            letter-spacing: 2px;
-        }
-
-        @keyframes shopSpin {
-            to {
-                transform: rotate(360deg);
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
             }
         }
 
@@ -670,64 +755,160 @@
 
 <body class="relative">
 
-<!-- Floating background -->
-<div id="petals-container"></div>
+<!-- Scroll Progress -->
+<div id="scrollProgress"></div>
 
+<!-- Floating Background -->
+<div id="petals-container"></div>
 
 <!-- =========================
      NAVIGATION
 ========================= -->
 
-<nav class="fixed top-0 left-0 w-full z-50 glass-card border-b border-blue-900/30">
+<nav id="mainNav"
+     class="fixed top-0 left-0 w-full z-50 glass-card border-b border-blue-900/30">
 
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
 
-        <a href="#"
+        <a href="#home"
+           aria-label="Tahlila Hashmi Home"
            class="text-2xl font-luxury italic font-bold bg-gradient-to-r from-blue-400 to-indigo-300 bg-clip-text text-transparent">
+
             Tahlila Hashmi
+
         </a>
 
-        <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+        <!-- Desktop Menu -->
 
-            <a href="#home" class="hover:text-blue-400 transition">
+        <div class="hidden lg:flex items-center space-x-7 text-sm font-medium">
+
+            <a href="#home"
+               class="hover:text-blue-400 transition">
                 Home
             </a>
 
-            <a href="#services" class="hover:text-blue-400 transition">
+            <a href="#services"
+               class="hover:text-blue-400 transition">
                 Expertise
             </a>
 
-            <a href="#ideas" class="hover:text-blue-400 transition">
+            <a href="#ideas"
+               class="hover:text-blue-400 transition">
                 Web Ideas
             </a>
 
-            <a href="#cloud-chain" class="hover:text-blue-400 transition">
+            <a href="#skills"
+               class="hover:text-blue-400 transition">
+                Skills
+            </a>
+
+            <a href="#cloud-chain"
+               class="hover:text-blue-400 transition">
                 Cloud Network
             </a>
 
-            <a href="#portfolio" class="hover:text-blue-400 transition">
+            <a href="#portfolio"
+               class="hover:text-blue-400 transition">
                 Portfolio
             </a>
 
-            <a href="#contact" class="hover:text-blue-400 transition">
+            <a href="#faq"
+               class="hover:text-blue-400 transition">
+                FAQ
+            </a>
+
+            <a href="#contact"
+               class="hover:text-blue-400 transition">
                 Contact
             </a>
 
         </div>
 
-        <a href="https://wa.me/923068884588"
-           target="_blank"
-           class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition flex items-center gap-2">
+        <!-- Email Button -->
 
-            <i class="fab fa-whatsapp"></i>
-            WhatsApp
+        <a href="mailto:tahlilahashmi2@gmail.com?subject=Website%20Project%20Inquiry"
+           class="hidden sm:flex bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition items-center gap-2">
+
+            <i class="fas fa-envelope"></i>
+
+            Email Me
 
         </a>
+
+        <!-- Mobile Menu Button -->
+
+        <button id="menuBtn"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                class="lg:hidden w-11 h-11 rounded-xl border border-blue-500/30 bg-blue-500/10 text-blue-400">
+
+            <i class="fas fa-bars"></i>
+
+        </button>
+
+    </div>
+
+    <!-- Mobile Menu -->
+
+    <div id="mobileMenu"
+         class="mobile-menu lg:hidden border-t border-blue-900/30">
+
+        <div class="px-6 py-5 flex flex-col gap-4 text-sm">
+
+            <a href="#home"
+               class="mobile-link hover:text-blue-400">
+                Home
+            </a>
+
+            <a href="#services"
+               class="mobile-link hover:text-blue-400">
+                Expertise
+            </a>
+
+            <a href="#ideas"
+               class="mobile-link hover:text-blue-400">
+                Web Ideas
+            </a>
+
+            <a href="#skills"
+               class="mobile-link hover:text-blue-400">
+                Skills
+            </a>
+
+            <a href="#cloud-chain"
+               class="mobile-link hover:text-blue-400">
+                Cloud Network
+            </a>
+
+            <a href="#portfolio"
+               class="mobile-link hover:text-blue-400">
+                Portfolio
+            </a>
+
+            <a href="#faq"
+               class="mobile-link hover:text-blue-400">
+                FAQ
+            </a>
+
+            <a href="#contact"
+               class="mobile-link hover:text-blue-400">
+                Contact
+            </a>
+
+            <a href="mailto:tahlilahashmi2@gmail.com?subject=Website%20Project%20Inquiry"
+               class="mt-2 bg-blue-600 text-white px-5 py-3 rounded-xl text-center font-semibold">
+
+                <i class="fas fa-envelope mr-2"></i>
+                tahlilahashmi2@gmail.com
+
+            </a>
+
+        </div>
 
     </div>
 
 </nav>
-
 
 <!-- =========================
      HERO
@@ -744,7 +925,7 @@
 
             <span class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-semibold tracking-wider uppercase mb-6 border border-blue-500/20">
 
-                Professional Startup & Dev Portfolio
+                Professional Web Development Studio
 
             </span>
 
@@ -762,16 +943,16 @@
 
             <p class="text-gray-400 text-lg mb-8 leading-relaxed">
 
-                Welcome to my professional startup hub! I build stunning,
-                high-performance, animated websites tailored to elevate your
-                business presence in the digital landscape.
+                Welcome to my professional digital studio. I create
+                high-performance, responsive and visually impressive websites
+                designed to give businesses a stronger digital presence.
 
             </p>
 
             <div class="flex flex-wrap gap-4">
 
                 <a href="#ideas"
-                   class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold px-8 py-4 rounded-xl shadow-lg transition">
+                   class="shine-btn bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold px-8 py-4 rounded-xl shadow-lg transition">
 
                     Explore Web Ideas
 
@@ -780,14 +961,49 @@
                 <a href="#contact"
                    class="glass-card text-white font-semibold px-8 py-4 rounded-xl">
 
-                    Place an Order
+                    Start a Project
 
                 </a>
 
             </div>
 
-        </div>
+            <!-- Trust Points -->
 
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-10">
+
+                <div>
+                    <div class="text-2xl font-bold text-blue-400">
+                        100%
+                    </div>
+
+                    <div class="text-xs text-gray-500">
+                        Responsive
+                    </div>
+                </div>
+
+                <div>
+                    <div class="text-2xl font-bold text-cyan-400">
+                        SEO
+                    </div>
+
+                    <div class="text-xs text-gray-500">
+                        Friendly
+                    </div>
+                </div>
+
+                <div>
+                    <div class="text-2xl font-bold text-indigo-400">
+                        24/7
+                    </div>
+
+                    <div class="text-xs text-gray-500">
+                        Email Support
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
 
         <!-- =========================
              ANIMATED PC
@@ -806,7 +1022,7 @@
 
                         <div class="pc-parts">
 
-                            <!-- PC MONITOR -->
+                            <!-- MONITOR -->
 
                             <div class="pc-part monitor-part">
 
@@ -820,16 +1036,13 @@
 
                             </div>
 
-
                             <!-- STAND -->
 
                             <div class="pc-part monitor-stand"></div>
 
-
                             <!-- BASE -->
 
                             <div class="pc-part monitor-base"></div>
-
 
                             <!-- CPU -->
 
@@ -841,7 +1054,6 @@
 
                             </div>
 
-
                             <!-- KEYBOARD -->
 
                             <div class="pc-part keyboard-part">
@@ -849,7 +1061,6 @@
                                 <div class="keyboard-keys"></div>
 
                             </div>
-
 
                             <!-- MOUSE -->
 
@@ -859,29 +1070,34 @@
 
                     </div>
 
-
                     <div class="text-center mt-4 pb-2">
 
                         <h3 class="text-2xl font-luxury italic font-bold text-white">
+
                             Tahlila Hashmi
+
                         </h3>
 
                         <p class="text-blue-400 text-sm font-medium mt-1 tracking-wider uppercase">
-                            Lead Web Architect & AI Developer
+
+                            Web Developer & Digital Creator
+
                         </p>
 
                         <div class="flex justify-center space-x-4 mt-4">
 
-                            <a href="https://wa.me/923068884588"
-                               target="_blank"
+                            <a href="mailto:tahlilahashmi2@gmail.com?subject=Website%20Project%20Inquiry"
+                               aria-label="Email Tahlila Hashmi"
                                class="w-10 h-10 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 hover:bg-blue-600 hover:text-white transition">
 
-                                <i class="fab fa-whatsapp"></i>
+                                <i class="fas fa-envelope"></i>
 
                             </a>
 
                             <a href="https://www.instagram.com/tahlila_hahmi371"
                                target="_blank"
+                               rel="noopener noreferrer"
+                               aria-label="Instagram"
                                class="w-10 h-10 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 hover:bg-blue-600 hover:text-white transition">
 
                                 <i class="fab fa-instagram"></i>
@@ -889,9 +1105,10 @@
                             </a>
 
                             <a href="mailto:tahlilahashmi2@gmail.com"
+                               aria-label="Send Email"
                                class="w-10 h-10 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 hover:bg-blue-600 hover:text-white transition">
 
-                                <i class="fas fa-envelope"></i>
+                                <i class="fas fa-paper-plane"></i>
 
                             </a>
 
@@ -908,115 +1125,177 @@
     </div>
 
 </section>
-
-
 <!-- =========================
-     SERVICES
+     SERVICES / EXPERTISE
 ========================= -->
 
 <section id="services"
-         class="py-20 px-6 relative z-10 bg-navy-800/40">
+         class="py-24 px-6 relative z-10">
 
     <div class="max-w-7xl mx-auto">
 
-        <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="text-center max-w-3xl mx-auto mb-16"
+             data-aos="fade-up">
 
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4 font-luxury italic">
-                What Kind of Websites We Build
+            <span class="text-blue-400 text-sm font-semibold uppercase tracking-[0.2em]">
+                My Expertise
+            </span>
+
+            <h2 class="text-3xl sm:text-5xl font-bold mt-3 mb-5">
+                Digital Solutions Built
+                <span class="font-luxury italic text-blue-400">
+                    For Growth
+                </span>
             </h2>
 
-            <p class="text-gray-400">
-                Professional website solutions designed for diverse industries
-                to scale your growth.
+            <p class="text-gray-400 leading-relaxed">
+                From business websites to complete digital platforms,
+                every project is designed with performance, usability,
+                responsiveness and modern aesthetics in mind.
             </p>
 
         </div>
 
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-3 gap-7">
 
-            <div class="glass-card rounded-2xl p-8">
+            <!-- Service 1 -->
 
-                <div class="w-14 h-14 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-2xl mb-6">
+            <div class="glass-card rounded-3xl p-8"
+                 data-aos="fade-up"
+                 data-aos-delay="100">
 
-                    <i class="fas fa-shopping-cart"></i>
+                <div class="w-14 h-14 rounded-2xl bg-blue-500/10
+                            border border-blue-500/20
+                            flex items-center justify-center
+                            text-blue-400 text-2xl mb-6">
+
+                    <i class="fas fa-cart-shopping"></i>
 
                 </div>
 
-                <h3 class="text-xl font-bold mb-3 font-luxury italic">
+                <h3 class="text-xl font-bold mb-3">
                     E-Commerce Stores
                 </h3>
 
                 <p class="text-gray-400 text-sm leading-relaxed mb-6">
-
-                    High-converting online shopping platforms equipped with
-                    secure cart systems, clean dashboards and seamless checkout.
-
+                    Modern online stores with clean product layouts,
+                    responsive design, smooth interactions and
+                    conversion-focused user experiences.
                 </p>
 
-                <a href="#contact"
-                   class="text-blue-400 font-semibold text-sm">
+                <ul class="space-y-3 text-sm text-gray-400">
 
-                    Order This Style →
-                </a>
+                    <li>
+                        <i class="fas fa-check text-blue-400 mr-2"></i>
+                        Product showcase
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check text-blue-400 mr-2"></i>
+                        Mobile responsive
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check text-blue-400 mr-2"></i>
+                        Modern checkout UI
+                    </li>
+
+                </ul>
 
             </div>
 
 
-            <div class="glass-card rounded-2xl p-8">
+            <!-- Service 2 -->
 
-                <div class="w-14 h-14 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-2xl mb-6">
+            <div class="glass-card rounded-3xl p-8"
+                 data-aos="fade-up"
+                 data-aos-delay="200">
 
-                    <i class="fas fa-briefcase"></i>
+                <div class="w-14 h-14 rounded-2xl bg-indigo-500/10
+                            border border-indigo-500/20
+                            flex items-center justify-center
+                            text-indigo-400 text-2xl mb-6">
+
+                    <i class="fas fa-building"></i>
 
                 </div>
 
-                <h3 class="text-xl font-bold mb-3 font-luxury italic">
+                <h3 class="text-xl font-bold mb-3">
                     Corporate & Portfolios
                 </h3>
 
                 <p class="text-gray-400 text-sm leading-relaxed mb-6">
-
-                    Sleek, animation-rich professional sites tailored for
-                    agencies, freelancers and enterprises.
-
+                    Professional websites for businesses, freelancers,
+                    creators and personal brands that need a strong
+                    online identity.
                 </p>
 
-                <a href="#contact"
-                   class="text-blue-400 font-semibold text-sm">
+                <ul class="space-y-3 text-sm text-gray-400">
 
-                    Order This Style →
+                    <li>
+                        <i class="fas fa-check text-indigo-400 mr-2"></i>
+                        Professional branding
+                    </li>
 
-                </a>
+                    <li>
+                        <i class="fas fa-check text-indigo-400 mr-2"></i>
+                        SEO-friendly structure
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check text-indigo-400 mr-2"></i>
+                        Fast loading design
+                    </li>
+
+                </ul>
 
             </div>
 
 
-            <div class="glass-card rounded-2xl p-8">
+            <!-- Service 3 -->
 
-                <div class="w-14 h-14 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-2xl mb-6">
+            <div class="glass-card rounded-3xl p-8"
+                 data-aos="fade-up"
+                 data-aos-delay="300">
 
-                    <i class="fas fa-laptop-code"></i>
+                <div class="w-14 h-14 rounded-2xl bg-cyan-500/10
+                            border border-cyan-500/20
+                            flex items-center justify-center
+                            text-cyan-400 text-2xl mb-6">
+
+                    <i class="fas fa-code"></i>
 
                 </div>
 
-                <h3 class="text-xl font-bold mb-3 font-luxury italic">
-                    Custom Web Apps & Startups
+                <h3 class="text-xl font-bold mb-3">
+                    Custom Web Apps
                 </h3>
 
                 <p class="text-gray-400 text-sm leading-relaxed mb-6">
-
-                    Tailor-made web solutions featuring unique interactive
-                    animations and fully responsive layouts.
-
+                    Interactive web applications and startup concepts
+                    created around specific business requirements
+                    and user needs.
                 </p>
 
-                <a href="#contact"
-                   class="text-blue-400 font-semibold text-sm">
+                <ul class="space-y-3 text-sm text-gray-400">
 
-                    Order This Style →
+                    <li>
+                        <i class="fas fa-check text-cyan-400 mr-2"></i>
+                        Interactive interfaces
+                    </li>
 
-                </a>
+                    <li>
+                        <i class="fas fa-check text-cyan-400 mr-2"></i>
+                        Custom functionality
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check text-cyan-400 mr-2"></i>
+                        Scalable structure
+                    </li>
+
+                </ul>
 
             </div>
 
@@ -1032,174 +1311,530 @@
 ========================= -->
 
 <section id="ideas"
-         class="py-20 px-6 relative z-10">
+         class="py-24 px-6 relative z-10 bg-slate-950/40">
 
     <div class="max-w-7xl mx-auto">
 
-        <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="text-center max-w-3xl mx-auto mb-16"
+             data-aos="fade-up">
 
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4 font-luxury italic">
+            <span class="text-blue-400 text-sm font-semibold uppercase tracking-[0.2em]">
+                Creative Concepts
+            </span>
 
-                Recommended Website Ideas & Designs
-
+            <h2 class="text-3xl sm:text-5xl font-bold mt-3 mb-5">
+                Website Ideas That
+                <span class="font-luxury italic text-cyan-400">
+                    Stand Out
+                </span>
             </h2>
 
             <p class="text-gray-400">
-
-                Choose from our curated professional website styles or request
-                a custom layout.
-
+                Choose a visual direction for your next website,
+                then turn the concept into a complete digital experience.
             </p>
 
         </div>
 
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-3 gap-7">
 
+            <!-- Idea 1 -->
 
-            <!-- CARD 1 -->
+            <div class="glass-card rounded-3xl p-7 group"
+                 data-aos="zoom-in"
+                 data-aos-delay="100">
 
-            <div class="glass-card rounded-2xl overflow-hidden">
+                <div class="h-44 rounded-2xl mb-6 overflow-hidden
+                            border border-blue-500/20
+                            bg-gradient-to-br
+                            from-blue-950
+                            via-slate-900
+                            to-slate-950
+                            relative">
 
-                <div class="relative h-48 network-bg flex items-center justify-center">
+                    <div class="absolute inset-0
+                                opacity-40
+                                bg-[radial-gradient(circle_at_center,_#3b82f6,_transparent_60%)]">
+                    </div>
 
-                    <div class="orbit-animation"></div>
-                    <div class="orbit-animation orbit2"></div>
+                    <div class="absolute left-6 right-6 top-7
+                                h-5 rounded-lg
+                                bg-blue-500/20 border border-blue-400/20">
+                    </div>
 
-                    <i class="fas fa-microchip text-3xl text-blue-400 relative z-10"></i>
+                    <div class="absolute left-6 right-20 top-16
+                                h-3 rounded
+                                bg-blue-400/20">
+                    </div>
 
-                    <span class="absolute top-4 right-4 bg-blue-600 text-xs font-bold px-3 py-1 rounded-full">
-                        Popular
-                    </span>
+                    <div class="absolute left-6 right-28 top-24
+                                h-3 rounded
+                                bg-cyan-400/20">
+                    </div>
+
+                    <div class="absolute bottom-5 left-6
+                                w-16 h-16 rounded-2xl
+                                border border-blue-400/30
+                                bg-blue-500/10">
+                    </div>
+
+                    <div class="absolute bottom-5 right-6
+                                w-28 h-16 rounded-2xl
+                                border border-blue-400/20
+                                bg-slate-900/80">
+                    </div>
 
                 </div>
 
-                <div class="p-6">
+                <h3 class="text-xl font-bold mb-3">
+                    Neon Navy Corporate
+                </h3>
 
-                    <h3 class="text-lg font-bold mb-2 font-luxury italic">
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    A premium corporate interface with dark glass
+                    surfaces, electric blue highlights and a futuristic
+                    business aesthetic.
+                </p>
 
-                        Neon Navy Corporate Theme
+                <a href="#contact"
+                   class="inline-flex items-center gap-2 text-blue-400
+                          text-sm font-semibold
+                          hover:text-blue-300 transition">
 
-                    </h3>
+                    Choose This Style
+                    <i class="fas fa-arrow-right text-xs"></i>
 
-                    <p class="text-gray-400 text-xs mb-6">
-
-                        Dark navy aesthetic with glowing neon blue highlights,
-                        orbit effects and premium corporate visuals.
-
-                    </p>
-
-                    <a href="#contact"
-                       class="block w-full py-3 bg-blue-600/20 border border-blue-500/40 text-blue-400 font-semibold rounded-xl text-center text-sm">
-
-                        Select & Order
-
-                    </a>
-
-                </div>
+                </a>
 
             </div>
 
 
-            <!-- CARD 2 -->
+            <!-- Idea 2 -->
 
-            <div class="glass-card rounded-2xl overflow-hidden">
+            <div class="glass-card rounded-3xl p-7 group"
+                 data-aos="zoom-in"
+                 data-aos-delay="200">
 
-                <div class="relative h-48 network-bg flex items-center justify-center">
+                <div class="h-44 rounded-2xl mb-6 overflow-hidden
+                            border border-indigo-500/20
+                            bg-gradient-to-br
+                            from-indigo-950
+                            via-slate-900
+                            to-slate-950
+                            relative">
 
-                    <div class="data-stream">
+                    <div class="absolute top-7 left-1/2
+                                -translate-x-1/2
+                                w-32 h-32 rounded-full
+                                border border-indigo-400/20
+                                shadow-[0_0_50px_rgba(99,102,241,.15)]">
+                    </div>
 
-                        <div class="data-line"></div>
-                        <div class="data-line"></div>
-                        <div class="data-line"></div>
-                        <div class="data-line"></div>
+                    <div class="absolute top-14 left-1/2
+                                -translate-x-1/2
+                                w-16 h-16 rounded-full
+                                bg-indigo-500/10
+                                border border-indigo-400/30">
+                    </div>
+
+                    <div class="absolute bottom-7 left-10 right-10
+                                h-2 rounded-full
+                                bg-indigo-400/20">
+                    </div>
+
+                    <div class="absolute bottom-3 left-20 right-20
+                                h-1 rounded-full
+                                bg-indigo-500/10">
+                    </div>
+
+                </div>
+
+                <h3 class="text-xl font-bold mb-3">
+                    Minimalist Tech Startup
+                </h3>
+
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    Clean layouts, focused typography and subtle
+                    interactions for technology startups and modern
+                    SaaS products.
+                </p>
+
+                <a href="#contact"
+                   class="inline-flex items-center gap-2 text-indigo-400
+                          text-sm font-semibold
+                          hover:text-indigo-300 transition">
+
+                    Choose This Style
+                    <i class="fas fa-arrow-right text-xs"></i>
+
+                </a>
+
+            </div>
+
+
+            <!-- Idea 3 -->
+
+            <div class="glass-card rounded-3xl p-7 group"
+                 data-aos="zoom-in"
+                 data-aos-delay="300">
+
+                <div class="h-44 rounded-2xl mb-6 overflow-hidden
+                            border border-cyan-500/20
+                            bg-gradient-to-br
+                            from-cyan-950
+                            via-slate-900
+                            to-slate-950
+                            relative">
+
+                    <div class="absolute left-1/2 top-1/2
+                                -translate-x-1/2
+                                -translate-y-1/2
+                                w-24 h-24
+                                border border-cyan-400/40
+                                rotate-45">
 
                     </div>
 
-                    <i class="fas fa-server text-3xl text-indigo-400 relative z-10"></i>
-
-                    <span class="absolute top-4 right-4 bg-indigo-600 text-xs font-bold px-3 py-1 rounded-full z-10">
-                        Trending
-                    </span>
-
-                </div>
-
-                <div class="p-6">
-
-                    <h3 class="text-lg font-bold mb-2 font-luxury italic">
-
-                        Minimalist Tech Startup
-
-                    </h3>
-
-                    <p class="text-gray-400 text-xs mb-6">
-
-                        Clean glassmorphic cards, moving data streams,
-                        modern typography and futuristic technology effects.
-
-                    </p>
-
-                    <a href="#contact"
-                       class="block w-full py-3 bg-blue-600/20 border border-blue-500/40 text-blue-400 font-semibold rounded-xl text-center text-sm">
-
-                        Select & Order
-
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- CARD 3 -->
-
-            <div class="glass-card rounded-2xl overflow-hidden">
-
-                <div class="relative h-48 network-bg flex items-center justify-center"
-                     style="perspective:600px;">
-
-                    <div class="cube">
-
-                        <div class="cube-face front"></div>
-                        <div class="cube-face back"></div>
-                        <div class="cube-face right"></div>
-                        <div class="cube-face left"></div>
-                        <div class="cube-face top"></div>
-                        <div class="cube-face bottom"></div>
+                    <div class="absolute left-1/2 top-1/2
+                                -translate-x-1/2
+                                -translate-y-1/2
+                                w-16 h-16
+                                border border-blue-400/30
+                                -rotate-12">
 
                     </div>
 
-                    <span class="absolute top-4 right-4 bg-cyan-600 text-xs font-bold px-3 py-1 rounded-full z-10">
-                        Advanced
+                    <div class="absolute top-5 left-8
+                                w-2 h-2 rounded-full
+                                bg-cyan-300
+                                shadow-[0_0_15px_#22d3ee]">
+                    </div>
+
+                    <div class="absolute bottom-6 right-10
+                                w-3 h-3 rounded-full
+                                bg-blue-400
+                                shadow-[0_0_15px_#60a5fa]">
+                    </div>
+
+                </div>
+
+                <h3 class="text-xl font-bold mb-3">
+                    Interactive 3D Portfolio
+                </h3>
+
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    An immersive portfolio concept combining depth,
+                    motion, futuristic elements and interactive
+                    storytelling.
+                </p>
+
+                <a href="#contact"
+                   class="inline-flex items-center gap-2 text-cyan-400
+                          text-sm font-semibold
+                          hover:text-cyan-300 transition">
+
+                    Choose This Style
+                    <i class="fas fa-arrow-right text-xs"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SKILLS
+========================= -->
+
+<section id="skills"
+         class="py-24 px-6 relative z-10">
+
+    <div class="max-w-7xl mx-auto">
+
+        <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+            <!-- LEFT -->
+
+            <div data-aos="fade-right">
+
+                <span class="text-blue-400 text-sm font-semibold uppercase tracking-[0.2em]">
+                    Technical Skills
+                </span>
+
+                <h2 class="text-3xl sm:text-5xl font-bold mt-3 mb-6">
+                    Technology Behind
+                    <span class="font-luxury italic text-blue-400">
+                        The Experience
+                    </span>
+                </h2>
+
+                <p class="text-gray-400 leading-relaxed mb-8">
+                    I focus on combining clean development practices
+                    with modern visual design to create websites that
+                    look premium and remain easy to use.
+                </p>
+
+                <div class="flex flex-wrap gap-3">
+
+                    <span class="px-4 py-2 rounded-full
+                                 bg-orange-500/10
+                                 border border-orange-500/20
+                                 text-orange-300 text-sm">
+                        HTML5
+                    </span>
+
+                    <span class="px-4 py-2 rounded-full
+                                 bg-blue-500/10
+                                 border border-blue-500/20
+                                 text-blue-300 text-sm">
+                        CSS3
+                    </span>
+
+                    <span class="px-4 py-2 rounded-full
+                                 bg-yellow-500/10
+                                 border border-yellow-500/20
+                                 text-yellow-300 text-sm">
+                        JavaScript
+                    </span>
+
+                    <span class="px-4 py-2 rounded-full
+                                 bg-cyan-500/10
+                                 border border-cyan-500/20
+                                 text-cyan-300 text-sm">
+                        Tailwind CSS
+                    </span>
+
+                    <span class="px-4 py-2 rounded-full
+                                 bg-indigo-500/10
+                                 border border-indigo-500/20
+                                 text-indigo-300 text-sm">
+                        Responsive UI
+                    </span>
+
+                    <span class="px-4 py-2 rounded-full
+                                 bg-purple-500/10
+                                 border border-purple-500/20
+                                 text-purple-300 text-sm">
+                        UI / UX
+                    </span>
+
+                    <span class="px-4 py-2 rounded-full
+                                 bg-green-500/10
+                                 border border-green-500/20
+                                 text-green-300 text-sm">
+                        SEO
+                    </span>
+
+                    <span class="px-4 py-2 rounded-full
+                                 bg-sky-500/10
+                                 border border-sky-500/20
+                                 text-sky-300 text-sm">
+                        Performance
                     </span>
 
                 </div>
 
-                <div class="p-6">
+            </div>
 
-                    <h3 class="text-lg font-bold mb-2 font-luxury italic">
 
-                        Interactive 3D Portfolio
+            <!-- RIGHT -->
 
-                    </h3>
+            <div class="space-y-6"
+                 data-aos="fade-left">
 
-                    <p class="text-gray-400 text-xs mb-6">
+                <!-- Skill -->
 
-                        Immersive 3D visuals, interactive objects,
-                        smooth animations and direct order placement.
+                <div>
 
-                    </p>
+                    <div class="flex justify-between mb-2 text-sm">
 
-                    <a href="#contact"
-                       class="block w-full py-3 bg-blue-600/20 border border-blue-500/40 text-blue-400 font-semibold rounded-xl text-center text-sm">
+                        <span class="font-medium">
+                            Frontend Development
+                        </span>
 
-                        Select & Order
+                        <span class="text-blue-400">
+                            95%
+                        </span>
 
-                    </a>
+                    </div>
+
+                    <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+
+                        <div class="h-full rounded-full
+                                    bg-gradient-to-r
+                                    from-blue-600
+                                    to-cyan-400"
+                             style="width:95%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div class="flex justify-between mb-2 text-sm">
+
+                        <span class="font-medium">
+                            Responsive Design
+                        </span>
+
+                        <span class="text-blue-400">
+                            94%
+                        </span>
+
+                    </div>
+
+                    <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+
+                        <div class="h-full rounded-full
+                                    bg-gradient-to-r
+                                    from-indigo-600
+                                    to-blue-400"
+                             style="width:94%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div class="flex justify-between mb-2 text-sm">
+
+                        <span class="font-medium">
+                            UI / UX Design
+                        </span>
+
+                        <span class="text-blue-400">
+                            90%
+                        </span>
+
+                    </div>
+
+                    <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+
+                        <div class="h-full rounded-full
+                                    bg-gradient-to-r
+                                    from-cyan-600
+                                    to-blue-400"
+                             style="width:90%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div class="flex justify-between mb-2 text-sm">
+
+                        <span class="font-medium">
+                            SEO & Performance
+                        </span>
+
+                        <span class="text-blue-400">
+                            88%
+                        </span>
+
+                    </div>
+
+                    <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+
+                        <div class="h-full rounded-full
+                                    bg-gradient-to-r
+                                    from-blue-600
+                                    to-indigo-400"
+                             style="width:88%">
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     STATS
+========================= -->
+
+<section class="py-16 px-6 relative z-10">
+
+    <div class="max-w-6xl mx-auto
+                grid grid-cols-2 md:grid-cols-4
+                gap-5">
+
+        <div class="glass-card rounded-2xl p-6 text-center"
+             data-aos="fade-up">
+
+            <div class="text-3xl sm:text-4xl font-bold text-blue-400">
+                <span class="counter" data-target="20">0</span>+
+            </div>
+
+            <p class="text-gray-500 text-sm mt-2">
+                Digital Concepts
+            </p>
+
+        </div>
+
+
+        <div class="glass-card rounded-2xl p-6 text-center"
+             data-aos="fade-up"
+             data-aos-delay="100">
+
+            <div class="text-3xl sm:text-4xl font-bold text-cyan-400">
+                <span class="counter" data-target="100">0</span>%
+            </div>
+
+            <p class="text-gray-500 text-sm mt-2">
+                Responsive Focus
+            </p>
+
+        </div>
+
+
+        <div class="glass-card rounded-2xl p-6 text-center"
+             data-aos="fade-up"
+             data-aos-delay="200">
+
+            <div class="text-3xl sm:text-4xl font-bold text-indigo-400">
+                <span class="counter" data-target="24">0</span>/7
+            </div>
+
+            <p class="text-gray-500 text-sm mt-2">
+                Project Inquiry
+            </p>
+
+        </div>
+
+
+        <div class="glass-card rounded-2xl p-6 text-center"
+             data-aos="fade-up"
+             data-aos-delay="300">
+
+            <div class="text-3xl sm:text-4xl font-bold text-blue-300">
+                <span class="counter" data-target="1">0</span>
+            </div>
+
+            <p class="text-gray-500 text-sm mt-2">
+                Dedicated Creator
+            </p>
 
         </div>
 
@@ -1213,58 +1848,103 @@
 ========================= -->
 
 <section id="cloud-chain"
-         class="py-20 px-6 relative z-10 bg-navy-800/40">
+         class="py-24 px-6 relative z-10">
 
     <div class="max-w-7xl mx-auto">
 
-        <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="text-center max-w-3xl mx-auto mb-12"
+             data-aos="fade-up">
 
-            <span class="inline-block px-4 py-1.5 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-semibold uppercase mb-4 border border-cyan-500/20">
-
-                Global Infrastructure
-
+            <span class="text-cyan-400 text-sm font-semibold uppercase tracking-[0.2em]">
+                Connected Infrastructure
             </span>
 
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4 font-luxury italic">
-
-                Cloud Computing & Server Network Chain
-
+            <h2 class="text-3xl sm:text-5xl font-bold mt-3 mb-5">
+                Cloud
+                <span class="font-luxury italic text-cyan-400">
+                    Network
+                </span>
+                Architecture
             </h2>
 
-            <p class="text-gray-400">
-
-                Watch our decentralized servers seamlessly connect and transfer
-                data across worldwide clusters.
-
+            <p class="text-gray-400 leading-relaxed">
+                A visual representation of connected digital nodes,
+                data flow and modern cloud infrastructure.
             </p>
 
         </div>
 
 
-        <div class="glass-card rounded-3xl p-6 border border-cyan-500/30">
+        <div class="glass-card rounded-3xl overflow-hidden"
+             data-aos="zoom-in">
 
-            <div class="relative rounded-2xl overflow-hidden w-full h-96 network-bg">
+            <div class="relative h-[420px] bg-slate-950">
 
-                <canvas id="cloudChainCanvas"
-                        class="absolute inset-0 w-full h-full"></canvas>
+                <canvas id="networkCanvas"
+                        class="absolute inset-0 w-full h-full">
+                </canvas>
 
-                <div class="absolute bottom-6 left-6 right-6 flex flex-wrap justify-between items-center bg-navy-900/80 backdrop-blur-md px-6 py-3 rounded-xl border border-cyan-500/30 text-xs text-cyan-300">
+                <div class="absolute inset-0
+                            flex items-center justify-center
+                            pointer-events-none">
 
-                    <div class="flex items-center gap-2">
+                    <div class="w-28 h-28 rounded-full
+                                border border-cyan-400/40
+                                bg-cyan-500/10
+                                flex items-center justify-center
+                                shadow-[0_0_60px_rgba(34,211,238,.15)]">
 
-                        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+                        <div class="w-14 h-14 rounded-full
+                                    border border-blue-400/40
+                                    bg-blue-500/10
+                                    flex items-center justify-center">
 
-                        Cloud Cluster Nodes:
-                        <strong>Active & Synchronized</strong>
+                            <i class="fas fa-cloud
+                                      text-2xl text-cyan-300">
+                            </i>
+
+                        </div>
 
                     </div>
 
-                    <div class="hidden sm:block">
+                </div>
 
-                        Latency: <strong>12ms</strong>
-                        |
-                        Encryption:
-                        <strong>SHA-256 Cloud Secure</strong>
+                <div class="absolute bottom-5 left-5 right-5
+                            flex flex-wrap justify-center gap-3">
+
+                    <div class="px-4 py-2 rounded-full
+                                bg-slate-900/80
+                                border border-cyan-400/20
+                                text-xs text-cyan-300">
+
+                        <i class="fas fa-circle text-[6px] mr-2"></i>
+
+                        Cloud Cluster Nodes:
+                        <span class="font-semibold">
+                            Active & Synchronized
+                        </span>
+
+                    </div>
+
+                    <div class="px-4 py-2 rounded-full
+                                bg-slate-900/80
+                                border border-blue-400/20
+                                text-xs text-blue-300">
+
+                        <i class="fas fa-bolt mr-2"></i>
+
+                        Latency: 12ms
+
+                    </div>
+
+                    <div class="px-4 py-2 rounded-full
+                                bg-slate-900/80
+                                border border-indigo-400/20
+                                text-xs text-indigo-300">
+
+                        <i class="fas fa-lock mr-2"></i>
+
+                        SHA-256 Cloud Secure
 
                     </div>
 
@@ -1277,90 +1957,439 @@
     </div>
 
 </section>
-
-
 <!-- =========================
      PORTFOLIO
 ========================= -->
 
 <section id="portfolio"
-         class="py-20 px-6 relative z-10">
+         class="py-24 px-6 relative z-10 bg-slate-950/40">
 
-    <div class="max-w-7xl mx-auto text-center">
+    <div class="max-w-7xl mx-auto">
 
-        <h2 class="text-3xl sm:text-4xl font-bold mb-4 font-luxury italic">
+        <div class="text-center max-w-3xl mx-auto mb-16"
+             data-aos="fade-up">
 
-            Featured Work & Projects
+            <span class="text-blue-400 text-sm font-semibold uppercase tracking-[0.2em]">
+                Selected Work
+            </span>
 
-        </h2>
+            <h2 class="text-3xl sm:text-5xl font-bold mt-3 mb-5">
+                Digital Projects &
+                <span class="font-luxury italic text-blue-400">
+                    Concepts
+                </span>
+            </h2>
 
-        <p class="text-gray-400 mb-12">
+            <p class="text-gray-400">
+                A selection of modern digital experiences,
+                interfaces and website concepts.
+            </p>
 
-            A glimpse of high-end web development crafted with precision.
-
-        </p>
+        </div>
 
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-
+        <div class="grid lg:grid-cols-2 gap-8">
 
             <!-- PROJECT 1 -->
 
-            <div class="glass-card rounded-2xl p-6 overflow-hidden">
+            <article class="glass-card rounded-3xl overflow-hidden"
+                     data-aos="fade-up">
 
-                <div class="relative rounded-xl w-full h-56 network-bg overflow-hidden mb-4 flex items-center justify-center">
+                <div class="h-64 relative overflow-hidden
+                            bg-gradient-to-br
+                            from-blue-950
+                            via-slate-900
+                            to-slate-950">
 
-                    <div class="chart">
+                    <!-- Dashboard -->
 
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
+                    <div class="absolute inset-6
+                                rounded-2xl
+                                border border-blue-400/20
+                                bg-slate-950/80
+                                shadow-2xl
+                                overflow-hidden">
+
+                        <div class="h-9 border-b border-blue-400/10
+                                    flex items-center px-4 gap-2">
+
+                            <span class="w-2.5 h-2.5 rounded-full bg-red-400/60"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-yellow-400/60"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-green-400/60"></span>
+
+                        </div>
+
+                        <div class="grid grid-cols-4 h-full">
+
+                            <div class="border-r border-blue-400/10 p-3 space-y-2">
+
+                                <div class="h-2 w-full rounded bg-blue-500/20"></div>
+                                <div class="h-2 w-4/5 rounded bg-blue-500/10"></div>
+                                <div class="h-2 w-3/5 rounded bg-blue-500/10"></div>
+                                <div class="h-2 w-4/5 rounded bg-blue-500/10"></div>
+
+                            </div>
+
+                            <div class="col-span-3 p-4">
+
+                                <div class="grid grid-cols-3 gap-3 mb-4">
+
+                                    <div class="h-12 rounded-xl bg-blue-500/10 border border-blue-400/10"></div>
+                                    <div class="h-12 rounded-xl bg-indigo-500/10 border border-indigo-400/10"></div>
+                                    <div class="h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/10"></div>
+
+                                </div>
+
+                                <div class="h-24 rounded-xl
+                                            border border-blue-400/10
+                                            bg-blue-500/5
+                                            relative overflow-hidden">
+
+                                    <div class="absolute bottom-0 left-0
+                                                w-full h-[45%]
+                                                bg-gradient-to-t
+                                                from-blue-500/20
+                                                to-transparent">
+                                    </div>
+
+                                    <div class="absolute bottom-8 left-5
+                                                w-3 h-3 rounded-full
+                                                bg-blue-400
+                                                shadow-[0_0_15px_#60a5fa]">
+                                    </div>
+
+                                    <div class="absolute bottom-14 left-[35%]
+                                                w-3 h-3 rounded-full
+                                                bg-cyan-400">
+                                    </div>
+
+                                    <div class="absolute bottom-10 left-[60%]
+                                                w-3 h-3 rounded-full
+                                                bg-indigo-400">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
                 </div>
 
-                <h3 class="text-xl font-bold text-white mb-2 font-luxury italic">
 
-                    SaaS Dashboard & Analytics
+                <div class="p-8">
 
-                </h3>
+                    <div class="flex items-center justify-between gap-4 mb-4">
 
-                <p class="text-gray-400 text-sm">
+                        <h3 class="text-2xl font-bold">
+                            SaaS Dashboard & Analytics
+                        </h3>
 
-                    Real-time stats tracking interface built with customized
-                    Tailwind components.
+                        <span class="text-xs px-3 py-1 rounded-full
+                                     bg-blue-500/10
+                                     border border-blue-500/20
+                                     text-blue-400 whitespace-nowrap">
 
-                </p>
+                            Web App
 
-            </div>
+                        </span>
+
+                    </div>
+
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        A futuristic dashboard concept designed for
+                        analytics, business intelligence and SaaS
+                        products.
+                    </p>
+
+                    <div class="flex flex-wrap gap-2">
+
+                        <span class="px-3 py-1 rounded-full
+                                     bg-slate-800 text-gray-400 text-xs">
+                            Dashboard
+                        </span>
+
+                        <span class="px-3 py-1 rounded-full
+                                     bg-slate-800 text-gray-400 text-xs">
+                            Analytics
+                        </span>
+
+                        <span class="px-3 py-1 rounded-full
+                                     bg-slate-800 text-gray-400 text-xs">
+                            Responsive
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
 
 
             <!-- PROJECT 2 -->
 
-            <div class="glass-card rounded-2xl p-6 overflow-hidden">
+            <article class="glass-card rounded-3xl overflow-hidden"
+                     data-aos="fade-up"
+                     data-aos-delay="150">
 
-                <div class="relative rounded-xl w-full h-56 network-bg overflow-hidden mb-4 flex items-center justify-center">
+                <div class="h-64 relative overflow-hidden
+                            bg-gradient-to-br
+                            from-indigo-950
+                            via-slate-900
+                            to-slate-950">
 
-                    <div class="shop-ring"></div>
+                    <div class="absolute inset-8
+                                rounded-3xl
+                                border border-indigo-400/20
+                                bg-slate-950/70
+                                flex items-center justify-center">
+
+                        <div class="relative w-40 h-40">
+
+                            <div class="absolute inset-0
+                                        rounded-full
+                                        border border-indigo-400/20
+                                        animate-spin"
+                                 style="animation-duration:12s">
+                            </div>
+
+                            <div class="absolute inset-5
+                                        rounded-full
+                                        border border-cyan-400/20
+                                        animate-spin"
+                                 style="animation-duration:8s;animation-direction:reverse">
+                            </div>
+
+                            <div class="absolute inset-12
+                                        rounded-full
+                                        bg-gradient-to-br
+                                        from-indigo-500/30
+                                        to-cyan-500/10
+                                        border border-indigo-400/30
+                                        flex items-center justify-center">
+
+                                <i class="fas fa-gem text-3xl text-cyan-300"></i>
+
+                            </div>
+
+                            <div class="absolute
+                                        top-1/2 left-0
+                                        w-3 h-3 rounded-full
+                                        bg-indigo-400
+                                        shadow-[0_0_15px_#818cf8]">
+                            </div>
+
+                            <div class="absolute
+                                        bottom-4 right-1
+                                        w-3 h-3 rounded-full
+                                        bg-cyan-400
+                                        shadow-[0_0_15px_#22d3ee]">
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
-                <h3 class="text-xl font-bold text-white mb-2 font-luxury italic">
 
-                    Luxury E-Commerce Boutique
+                <div class="p-8">
 
-                </h3>
+                    <div class="flex items-center justify-between gap-4 mb-4">
 
-                <p class="text-gray-400 text-sm">
+                        <h3 class="text-2xl font-bold">
+                            Luxury E-Commerce Boutique
+                        </h3>
 
-                    Smooth filter transitions, quick view components and
-                    fully responsive layouts.
+                        <span class="text-xs px-3 py-1 rounded-full
+                                     bg-indigo-500/10
+                                     border border-indigo-500/20
+                                     text-indigo-400 whitespace-nowrap">
 
-                </p>
+                            E-Commerce
+
+                        </span>
+
+                    </div>
+
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        A premium online boutique concept with
+                        elegant visual hierarchy, immersive product
+                        presentation and responsive layouts.
+                    </p>
+
+                    <div class="flex flex-wrap gap-2">
+
+                        <span class="px-3 py-1 rounded-full
+                                     bg-slate-800 text-gray-400 text-xs">
+                            Storefront
+                        </span>
+
+                        <span class="px-3 py-1 rounded-full
+                                     bg-slate-800 text-gray-400 text-xs">
+                            Luxury UI
+                        </span>
+
+                        <span class="px-3 py-1 rounded-full
+                                     bg-slate-800 text-gray-400 text-xs">
+                            Mobile First
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FAQ
+========================= -->
+
+<section id="faq"
+         class="py-24 px-6 relative z-10">
+
+    <div class="max-w-4xl mx-auto">
+
+        <div class="text-center mb-14"
+             data-aos="fade-up">
+
+            <span class="text-blue-400 text-sm font-semibold uppercase tracking-[0.2em]">
+                Frequently Asked
+            </span>
+
+            <h2 class="text-3xl sm:text-5xl font-bold mt-3">
+                Questions &
+                <span class="font-luxury italic text-blue-400">
+                    Answers
+                </span>
+            </h2>
+
+        </div>
+
+
+        <div class="space-y-4">
+
+            <!-- FAQ 1 -->
+
+            <div class="faq-item glass-card rounded-2xl overflow-hidden"
+                 data-aos="fade-up">
+
+                <button type="button"
+                        class="faq-button w-full px-6 py-5
+                               flex items-center justify-between
+                               text-left font-semibold">
+
+                    <span>
+                        Can you create a completely custom website?
+                    </span>
+
+                    <i class="fas fa-plus text-blue-400 faq-icon transition-transform"></i>
+
+                </button>
+
+                <div class="faq-answer hidden px-6 pb-6 text-gray-400 text-sm leading-relaxed">
+
+                    Yes. The website can be designed around your
+                    brand, content, audience, features and preferred
+                    visual style.
+
+                </div>
+
+            </div>
+
+
+            <!-- FAQ 2 -->
+
+            <div class="faq-item glass-card rounded-2xl overflow-hidden"
+                 data-aos="fade-up">
+
+                <button type="button"
+                        class="faq-button w-full px-6 py-5
+                               flex items-center justify-between
+                               text-left font-semibold">
+
+                    <span>
+                        Will my website work on mobile phones?
+                    </span>
+
+                    <i class="fas fa-plus text-blue-400 faq-icon transition-transform"></i>
+
+                </button>
+
+                <div class="faq-answer hidden px-6 pb-6 text-gray-400 text-sm leading-relaxed">
+
+                    Yes. Responsive layouts are used so the website
+                    adapts to phones, tablets, laptops and larger
+                    screens.
+
+                </div>
+
+            </div>
+
+
+            <!-- FAQ 3 -->
+
+            <div class="faq-item glass-card rounded-2xl overflow-hidden"
+                 data-aos="fade-up">
+
+                <button type="button"
+                        class="faq-button w-full px-6 py-5
+                               flex items-center justify-between
+                               text-left font-semibold">
+
+                    <span>
+                        Can you improve an existing website?
+                    </span>
+
+                    <i class="fas fa-plus text-blue-400 faq-icon transition-transform"></i>
+
+                </button>
+
+                <div class="faq-answer hidden px-6 pb-6 text-gray-400 text-sm leading-relaxed">
+
+                    Absolutely. Existing websites can be redesigned,
+                    optimized for speed, improved visually and made
+                    more responsive.
+
+                </div>
+
+            </div>
+
+
+            <!-- FAQ 4 -->
+
+            <div class="faq-item glass-card rounded-2xl overflow-hidden"
+                 data-aos="fade-up">
+
+                <button type="button"
+                        class="faq-button w-full px-6 py-5
+                               flex items-center justify-between
+                               text-left font-semibold">
+
+                    <span>
+                        How do I place a website order?
+                    </span>
+
+                    <i class="fas fa-plus text-blue-400 faq-icon transition-transform"></i>
+
+                </button>
+
+                <div class="faq-answer hidden px-6 pb-6 text-gray-400 text-sm leading-relaxed">
+
+                    Simply fill out the project form below with your
+                    requirements. The request will be sent securely
+                    through the project inquiry system.
+
+                </div>
 
             </div>
 
@@ -1372,105 +2401,573 @@
 
 
 <!-- =========================
-     CONTACT
+     CONTACT / ORDER DESK
 ========================= -->
 
 <section id="contact"
-         class="py-20 px-6 relative z-10 bg-navy-800/40">
+         class="py-24 px-6 relative z-10 bg-slate-950/40">
 
-    <div class="max-w-3xl mx-auto glass-card rounded-3xl p-8 sm:p-12 border border-blue-500/30">
+    <div class="max-w-6xl mx-auto">
 
-        <div class="text-center mb-10">
+        <div class="grid lg:grid-cols-5 gap-10 items-start">
 
-            <h2 class="text-3xl font-bold mb-2 font-luxury italic">
+            <!-- CONTACT INFO -->
 
-                Place Your Order / Get in Touch
+            <div class="lg:col-span-2"
+                 data-aos="fade-right">
 
-            </h2>
+                <span class="text-blue-400 text-sm font-semibold uppercase tracking-[0.2em]">
+                    Project Inquiry
+                </span>
 
-            <p class="text-gray-400 text-sm">
+                <h2 class="text-3xl sm:text-5xl font-bold mt-3 mb-6">
+                    Let's Build Something
+                    <span class="font-luxury italic text-blue-400">
+                        Amazing
+                    </span>
+                </h2>
 
-                Fill out the details below and connect instantly via WhatsApp.
+                <p class="text-gray-400 leading-relaxed mb-8">
+                    Have an idea for a website, portfolio, online store
+                    or custom digital product? Send the details and
+                    let's turn your concept into a polished online
+                    experience.
+                </p>
 
-            </p>
+
+                <div class="space-y-5">
+
+                    <a href="mailto:tahlilahashmi2@gmail.com"
+                       class="flex items-center gap-4 group">
+
+                        <div class="w-12 h-12 rounded-xl
+                                    bg-blue-500/10
+                                    border border-blue-500/20
+                                    flex items-center justify-center
+                                    text-blue-400">
+
+                            <i class="fas fa-envelope"></i>
+
+                        </div>
+
+                        <div>
+
+                            <div class="text-xs text-gray-500 uppercase tracking-wider">
+                                Email
+                            </div>
+
+                            <div class="text-sm font-medium
+                                        group-hover:text-blue-400
+                                        transition">
+
+                                tahlilahashmi2@gmail.com
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+                    <div class="flex items-center gap-4">
+
+                        <div class="w-12 h-12 rounded-xl
+                                    bg-indigo-500/10
+                                    border border-indigo-500/20
+                                    flex items-center justify-center
+                                    text-indigo-400">
+
+                            <i class="fas fa-clock"></i>
+
+                        </div>
+
+                        <div>
+
+                            <div class="text-xs text-gray-500 uppercase tracking-wider">
+                                Availability
+                            </div>
+
+                            <div class="text-sm font-medium">
+                                Open for New Projects
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="flex items-center gap-4">
+
+                        <div class="w-12 h-12 rounded-xl
+                                    bg-cyan-500/10
+                                    border border-cyan-500/20
+                                    flex items-center justify-center
+                                    text-cyan-400">
+
+                            <i class="fas fa-globe"></i>
+
+                        </div>
+
+                        <div>
+
+                            <div class="text-xs text-gray-500 uppercase tracking-wider">
+                                Service
+                            </div>
+
+                            <div class="text-sm font-medium">
+                                Worldwide Digital Projects
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="flex gap-3 mt-8">
+
+                    <a href="mailto:tahlilahashmi2@gmail.com"
+                       aria-label="Email"
+                       class="w-11 h-11 rounded-xl
+                              bg-blue-500/10
+                              border border-blue-500/20
+                              flex items-center justify-center
+                              text-blue-400
+                              hover:bg-blue-600
+                              hover:text-white
+                              transition">
+
+                        <i class="fas fa-envelope"></i>
+
+                    </a>
+
+
+                    <a href="https://www.instagram.com/tahlila_hahmi371"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="Instagram"
+                       class="w-11 h-11 rounded-xl
+                              bg-blue-500/10
+                              border border-blue-500/20
+                              flex items-center justify-center
+                              text-blue-400
+                              hover:bg-blue-600
+                              hover:text-white
+                              transition">
+
+                        <i class="fab fa-instagram"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <div class="lg:col-span-3"
+                 data-aos="fade-left">
+
+                <form id="projectForm"
+                      action="https://formspree.io/f/xbdnyork"
+                      method="POST"
+                      class="glass-card rounded-3xl p-7 sm:p-9">
+
+                    <!-- Honeypot -->
+                    <input type="text"
+                           name="_gotcha"
+                           tabindex="-1"
+                           autocomplete="off"
+                           class="hidden">
+
+                    <input type="hidden"
+                           name="_subject"
+                           value="New Website Project Inquiry - Tahlila Hashmi">
+
+                    <div class="grid sm:grid-cols-2 gap-5">
+
+                        <!-- Name -->
+
+                        <div>
+
+                            <label for="name"
+                                   class="block text-sm font-medium mb-2">
+
+                                Your Name
+                                <span class="text-blue-400">*</span>
+
+                            </label>
+
+                            <input id="name"
+                                   name="name"
+                                   type="text"
+                                   required
+                                   autocomplete="name"
+                                   placeholder="Enter your name"
+                                   class="w-full rounded-xl
+                                          bg-slate-950/70
+                                          border border-slate-700
+                                          focus:border-blue-500
+                                          focus:ring-2
+                                          focus:ring-blue-500/20
+                                          outline-none
+                                          px-4 py-3
+                                          text-sm
+                                          placeholder:text-gray-600
+                                          transition">
+
+                        </div>
+
+
+                        <!-- Email -->
+
+                        <div>
+
+                            <label for="email"
+                                   class="block text-sm font-medium mb-2">
+
+                                Email Address
+                                <span class="text-blue-400">*</span>
+
+                            </label>
+
+                            <input id="email"
+                                   name="email"
+                                   type="email"
+                                   required
+                                   autocomplete="email"
+                                   placeholder="you@example.com"
+                                   class="w-full rounded-xl
+                                          bg-slate-950/70
+                                          border border-slate-700
+                                          focus:border-blue-500
+                                          focus:ring-2
+                                          focus:ring-blue-500/20
+                                          outline-none
+                                          px-4 py-3
+                                          text-sm
+                                          placeholder:text-gray-600
+                                          transition">
+
+                        </div>
+
+
+                        <!-- Website Type -->
+
+                        <div>
+
+                            <label for="websiteType"
+                                   class="block text-sm font-medium mb-2">
+
+                                Website Type
+                                <span class="text-blue-400">*</span>
+
+                            </label>
+
+                            <select id="websiteType"
+                                    name="website_type"
+                                    required
+                                    class="w-full rounded-xl
+                                           bg-slate-950/70
+                                           border border-slate-700
+                                           focus:border-blue-500
+                                           focus:ring-2
+                                           focus:ring-blue-500/20
+                                           outline-none
+                                           px-4 py-3
+                                           text-sm
+                                           text-gray-300
+                                           transition">
+
+                                <option value="">
+                                    Select a project type
+                                </option>
+
+                                <option value="Business Website">
+                                    Business Website
+                                </option>
+
+                                <option value="Personal Portfolio">
+                                    Personal Portfolio
+                                </option>
+
+                                <option value="E-Commerce Store">
+                                    E-Commerce Store
+                                </option>
+
+                                <option value="Web Application">
+                                    Web Application
+                                </option>
+
+                                <option value="Landing Page">
+                                    Landing Page
+                                </option>
+
+                                <option value="Website Redesign">
+                                    Website Redesign
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Budget -->
+
+                        <div>
+
+                            <label for="budget"
+                                   class="block text-sm font-medium mb-2">
+
+                                Estimated Budget
+
+                            </label>
+
+                            <select id="budget"
+                                    name="budget"
+                                    class="w-full rounded-xl
+                                           bg-slate-950/70
+                                           border border-slate-700
+                                           focus:border-blue-500
+                                           focus:ring-2
+                                           focus:ring-blue-500/20
+                                           outline-none
+                                           px-4 py-3
+                                           text-sm
+                                           text-gray-300
+                                           transition">
+
+                                <option value="">
+                                    Select budget
+                                </option>
+
+                                <option value="Under $100">
+                                    Under $100
+                                </option>
+
+                                <option value="$100 - $250">
+                                    $100 - $250
+                                </option>
+
+                                <option value="$250 - $500">
+                                    $250 - $500
+                                </option>
+
+                                <option value="$500+">
+                                    $500+
+                                </option>
+
+                                <option value="Not sure yet">
+                                    Not sure yet
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Timeline -->
+
+                        <div>
+
+                            <label for="timeline"
+                                   class="block text-sm font-medium mb-2">
+
+                                Preferred Timeline
+
+                            </label>
+
+                            <select id="timeline"
+                                    name="timeline"
+                                    class="w-full rounded-xl
+                                           bg-slate-950/70
+                                           border border-slate-700
+                                           focus:border-blue-500
+                                           focus:ring-2
+                                           focus:ring-blue-500/20
+                                           outline-none
+                                           px-4 py-3
+                                           text-sm
+                                           text-gray-300
+                                           transition">
+
+                                <option value="">
+                                    Select timeline
+                                </option>
+
+                                <option value="ASAP">
+                                    As soon as possible
+                                </option>
+
+                                <option value="1-2 weeks">
+                                    1–2 weeks
+                                </option>
+
+                                <option value="2-4 weeks">
+                                    2–4 weeks
+                                </option>
+
+                                <option value="1-2 months">
+                                    1–2 months
+                                </option>
+
+                                <option value="Flexible">
+                                    Flexible
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Reference -->
+
+                        <div>
+
+                            <label for="reference"
+                                   class="block text-sm font-medium mb-2">
+
+                                Reference / Existing Website
+
+                            </label>
+
+                            <input id="reference"
+                                   name="reference"
+                                   type="url"
+                                   placeholder="https://example.com"
+                                   class="w-full rounded-xl
+                                          bg-slate-950/70
+                                          border border-slate-700
+                                          focus:border-blue-500
+                                          focus:ring-2
+                                          focus:ring-blue-500/20
+                                          outline-none
+                                          px-4 py-3
+                                          text-sm
+                                          placeholder:text-gray-600
+                                          transition">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Project Details -->
+
+                    <div class="mt-5">
+
+                        <div class="flex items-center justify-between mb-2">
+
+                            <label for="details"
+                                   class="block text-sm font-medium">
+
+                                Project Details
+                                <span class="text-blue-400">*</span>
+
+                            </label>
+
+                            <span id="charCount"
+                                  class="text-xs text-gray-600">
+                                0 / 1200
+                            </span>
+
+                        </div>
+
+                        <textarea id="details"
+                                  name="project_details"
+                                  rows="7"
+                                  maxlength="1200"
+                                  required
+                                  placeholder="Tell me about your website, features, pages, design preferences and goals..."
+                                  class="w-full rounded-xl
+                                         bg-slate-950/70
+                                         border border-slate-700
+                                         focus:border-blue-500
+                                         focus:ring-2
+                                         focus:ring-blue-500/20
+                                         outline-none
+                                         px-4 py-3
+                                         text-sm
+                                         placeholder:text-gray-600
+                                         resize-none
+                                         transition"></textarea>
+
+                    </div>
+
+
+                    <!-- Consent -->
+
+                    <label class="flex items-start gap-3 mt-5 cursor-pointer">
+
+                        <input type="checkbox"
+                               id="consent"
+                               required
+                               class="mt-1 accent-blue-600">
+
+                        <span class="text-xs text-gray-500 leading-relaxed">
+
+                            I confirm that the information provided above
+                            is accurate and can be used to respond to my
+                            project inquiry.
+
+                        </span>
+
+                    </label>
+
+
+                    <!-- Submit -->
+
+                    <button id="submitButton"
+                            type="submit"
+                            class="shine-btn w-full mt-6
+                                   bg-gradient-to-r
+                                   from-blue-600
+                                   to-indigo-600
+                                   hover:from-blue-500
+                                   hover:to-indigo-500
+                                   text-white
+                                   font-semibold
+                                   py-4
+                                   rounded-xl
+                                   transition
+                                   flex items-center
+                                   justify-center
+                                   gap-3">
+
+                        <i class="fas fa-paper-plane"></i>
+
+                        <span id="submitText">
+                            Send Project Inquiry
+                        </span>
+
+                    </button>
+
+
+                    <!-- Status -->
+
+                    <div id="formStatus"
+                         class="hidden mt-5 rounded-xl px-4 py-3 text-sm">
+                    </div>
+
+
+                    <p class="text-center text-xs text-gray-600 mt-4">
+
+                        Your inquiry is submitted securely through
+                        Formspree.
+
+                    </p>
+
+                </form>
+
+            </div>
 
         </div>
-
-
-        <form id="orderForm"
-              class="space-y-6"
-              onsubmit="sendToWhatsApp(event)">
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-
-                <div>
-
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
-
-                        Your Name
-
-                    </label>
-
-                    <input type="text"
-                           id="clientName"
-                           required
-                           class="w-full bg-navy-900 border border-blue-500/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500">
-
-                </div>
-
-
-                <div>
-
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
-
-                        Website Type / Idea
-
-                    </label>
-
-                    <select id="projectType"
-                            class="w-full bg-navy-900 border border-blue-500/30 rounded-xl px-4 py-3 text-white">
-
-                        <option>E-Commerce Store</option>
-                        <option>Corporate & Portfolio</option>
-                        <option>Custom Web App / Startup</option>
-                        <option>Neon Navy Corporate Theme</option>
-                        <option>Minimalist Tech Startup</option>
-                        <option>Interactive 3D Portfolio</option>
-
-                    </select>
-
-                </div>
-
-            </div>
-
-
-            <div>
-
-                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
-
-                    Project Details / Requirements
-
-                </label>
-
-                <textarea id="projectDetails"
-                          rows="4"
-                          required
-                          class="w-full bg-navy-900 border border-blue-500/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500"
-                          placeholder="Tell me about your project..."></textarea>
-
-            </div>
-
-
-            <button type="submit"
-                    class="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg flex items-center justify-center gap-3">
-
-                <i class="fab fa-whatsapp text-xl"></i>
-
-                Send Order via WhatsApp
-
-            </button>
-
-        </form>
 
     </div>
 
@@ -1481,348 +2978,879 @@
      FOOTER
 ========================= -->
 
-<footer class="py-10 px-6 border-t border-blue-900/30 text-center text-gray-500 text-sm relative z-10">
+<footer class="border-t border-blue-900/20 py-10 px-6 relative z-10">
 
-    <p>
-        &copy; 2026 Tahlila Hashmi.
-        All rights reserved.
-        Crafted with Luxury & Cloud Intelligence.
-    </p>
+    <div class="max-w-7xl mx-auto">
+
+        <div class="flex flex-col md:flex-row
+                    items-center justify-between
+                    gap-5">
+
+            <div class="text-center md:text-left">
+
+                <div class="font-luxury italic
+                            text-xl font-bold
+                            text-blue-400">
+
+                    Tahlila Hashmi
+
+                </div>
+
+                <p class="text-xs text-gray-600 mt-1">
+
+                    Professional Web Developer & Digital Creator
+
+                </p>
+
+            </div>
+
+
+            <div class="flex items-center gap-5 text-xs text-gray-500">
+
+                <a href="#home"
+                   class="hover:text-blue-400 transition">
+                    Home
+                </a>
+
+                <a href="#portfolio"
+                   class="hover:text-blue-400 transition">
+                    Portfolio
+                </a>
+
+                <a href="#contact"
+                   class="hover:text-blue-400 transition">
+                    Contact
+                </a>
+
+                <a href="mailto:tahlilahashmi2@gmail.com"
+                   class="hover:text-blue-400 transition">
+                    Email
+                </a>
+
+            </div>
+
+
+            <div class="text-xs text-gray-600 text-center md:text-right">
+
+                © 2026 Tahlila Hashmi.
+                <br class="sm:hidden">
+                All Rights Reserved.
+
+            </div>
+
+        </div>
+
+    </div>
 
 </footer>
 
 
-<!-- AOS -->
+<!-- =========================
+     BACK TO TOP
+========================= -->
+
+<button id="backToTop"
+        type="button"
+        aria-label="Back to top"
+        class="fixed bottom-6 right-6 z-50
+               w-12 h-12 rounded-full
+               bg-blue-600
+               hover:bg-blue-500
+               text-white
+               shadow-lg
+               flex items-center justify-center
+               opacity-0 invisible
+               translate-y-5
+               transition-all duration-300">
+
+    <i class="fas fa-arrow-up"></i>
+
+</button>
+
+
+<!-- =========================
+     AOS
+========================= -->
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 
 <script>
 
-AOS.init({
-    once: true,
-    duration: 800
-});
+    /* =========================
+       AOS INITIALIZATION
+    ========================== */
+
+    AOS.init({
+        duration: 850,
+        once: true,
+        offset: 70,
+        easing: 'ease-out-cubic'
+    });
 
 
-/* =========================
-   FLOATING PARTICLES
-========================= */
+    /* =========================
+       MOBILE MENU
+    ========================== */
 
-const petalsContainer =
-    document.getElementById("petals-container");
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-for(let i = 0; i < 22; i++){
+    if (menuBtn && mobileMenu) {
 
-    const petal =
-        document.createElement("div");
+        menuBtn.addEventListener('click', () => {
 
-    petal.className = "petal";
+            const isOpen =
+                mobileMenu.classList.toggle('open');
 
-    petal.style.left =
-        Math.random() * 100 + "vw";
-
-    petal.style.width =
-        Math.random() * 12 + 6 + "px";
-
-    petal.style.height =
-        Math.random() * 18 + 8 + "px";
-
-    petal.style.animationDuration =
-        Math.random() * 10 + 7 + "s";
-
-    petal.style.animationDelay =
-        Math.random() * 6 + "s";
-
-    petalsContainer.appendChild(petal);
-}
-
-
-/* =========================
-   WHATSAPP ORDER
-========================= */
-
-function sendToWhatsApp(e){
-
-    e.preventDefault();
-
-    const name =
-        document.getElementById("clientName").value;
-
-    const type =
-        document.getElementById("projectType").value;
-
-    const details =
-        document.getElementById("projectDetails").value;
-
-    const message =
-        `Hello Tahlila Hashmi,%0A%0A` +
-        `I want to place an order:%0A` +
-        `*Name:* ${encodeURIComponent(name)}%0A` +
-        `*Website Type:* ${encodeURIComponent(type)}%0A` +
-        `*Details:* ${encodeURIComponent(details)}`;
-
-    window.open(
-        `https://wa.me/923068884588?text=${message}`,
-        "_blank"
-    );
-}
-
-
-/* =========================
-   CLOUD NETWORK ANIMATION
-========================= */
-
-const cloudCanvas =
-    document.getElementById("cloudChainCanvas");
-
-if(cloudCanvas){
-
-    const ctx =
-        cloudCanvas.getContext("2d");
-
-    let width,
-        height,
-        nodes = [],
-        packets = [];
-
-    function resizeCloud(){
-
-        width =
-            cloudCanvas.width =
-            cloudCanvas.parentElement.clientWidth;
-
-        height =
-            cloudCanvas.height =
-            cloudCanvas.parentElement.clientHeight;
-
-    }
-
-    resizeCloud();
-
-    window.addEventListener(
-        "resize",
-        resizeCloud
-    );
-
-
-    for(let i = 0; i < 6; i++){
-
-        nodes.push({
-
-            x: (width / 7) * (i + 1),
-
-            y:
-                height / 2 +
-                Math.sin(i) * 55,
-
-            angle: i
-
-        });
-
-    }
-
-
-    for(let i = 0; i < 12; i++){
-
-        packets.push({
-
-            from:
-                Math.floor(
-                    Math.random() * 5
-                ),
-
-            progress:
-                Math.random()
-
-        });
-
-    }
-
-
-    function animateCloud(){
-
-        ctx.clearRect(
-            0,
-            0,
-            width,
-            height
-        );
-
-
-        nodes.forEach((node,index)=>{
-
-            node.angle += .02;
-
-            node.y =
-                height / 2 +
-                Math.sin(
-                    node.angle
-                ) * 55;
-
-        });
-
-
-        ctx.setLineDash([5,6]);
-
-        ctx.strokeStyle =
-            "rgba(34,211,238,.3)";
-
-        ctx.lineWidth = 2;
-
-        ctx.beginPath();
-
-        for(let i=0;i<nodes.length-1;i++){
-
-            ctx.moveTo(
-                nodes[i].x,
-                nodes[i].y
+            menuBtn.setAttribute(
+                'aria-expanded',
+                String(isOpen)
             );
 
-            ctx.lineTo(
-                nodes[i+1].x,
-                nodes[i+1].y
+            menuBtn.innerHTML = isOpen
+                ? '<i class="fas fa-xmark"></i>'
+                : '<i class="fas fa-bars"></i>';
+
+        });
+
+
+        document.querySelectorAll('.mobile-link')
+            .forEach(link => {
+
+                link.addEventListener('click', () => {
+
+                    mobileMenu.classList.remove('open');
+
+                    menuBtn.setAttribute(
+                        'aria-expanded',
+                        'false'
+                    );
+
+                    menuBtn.innerHTML =
+                        '<i class="fas fa-bars"></i>';
+
+                });
+
+            });
+
+    }
+
+
+    /* =========================
+       NAV SCROLL EFFECT
+    ========================== */
+
+    const mainNav =
+        document.getElementById('mainNav');
+
+    window.addEventListener('scroll', () => {
+
+        if (window.scrollY > 40) {
+
+            mainNav.classList.add('nav-scrolled');
+
+        } else {
+
+            mainNav.classList.remove('nav-scrolled');
+
+        }
+
+    });
+
+
+    /* =========================
+       SCROLL PROGRESS
+    ========================== */
+
+    const scrollProgress =
+        document.getElementById('scrollProgress');
+
+    window.addEventListener('scroll', () => {
+
+        const scrollTop =
+            window.scrollY;
+
+        const documentHeight =
+            document.documentElement.scrollHeight
+            - window.innerHeight;
+
+        const percentage =
+            documentHeight > 0
+                ? (scrollTop / documentHeight) * 100
+                : 0;
+
+        scrollProgress.style.width =
+            percentage + '%';
+
+    });
+
+
+    /* =========================
+       BACK TO TOP
+    ========================== */
+
+    const backToTop =
+        document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+
+        if (window.scrollY > 500) {
+
+            backToTop.classList.remove(
+                'opacity-0',
+                'invisible',
+                'translate-y-5'
+            );
+
+        } else {
+
+            backToTop.classList.add(
+                'opacity-0',
+                'invisible',
+                'translate-y-5'
             );
 
         }
 
-        ctx.stroke();
-
-        ctx.setLineDash([]);
+    });
 
 
-        packets.forEach(packet=>{
+    backToTop.addEventListener('click', () => {
 
-            packet.progress += .009;
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
 
-            if(packet.progress > 1){
+    });
 
-                packet.progress = 0;
 
-                packet.from =
-                    (packet.from + 1) % 5;
+    /* =========================
+       FLOATING PARTICLES
+    ========================== */
+
+    const petalsContainer =
+        document.getElementById('petals-container');
+
+    if (petalsContainer) {
+
+        const particleCount =
+            window.innerWidth < 640 ? 12 : 22;
+
+        for (let i = 0; i < particleCount; i++) {
+
+            const petal =
+                document.createElement('div');
+
+            petal.className = 'petal';
+
+            const size =
+                Math.random() * 7 + 3;
+
+            petal.style.width =
+                size + 'px';
+
+            petal.style.height =
+                size * 1.6 + 'px';
+
+            petal.style.left =
+                Math.random() * 100 + '%';
+
+            petal.style.animationDuration =
+                (Math.random() * 12 + 8) + 's';
+
+            petal.style.animationDelay =
+                (Math.random() * 10) + 's';
+
+            petal.style.transform =
+                `rotate(${Math.random() * 360}deg)`;
+
+            petalsContainer.appendChild(petal);
+
+        }
+
+    }
+
+
+    /* =========================
+       COUNTER ANIMATION
+    ========================== */
+
+    const counters =
+        document.querySelectorAll('.counter');
+
+    const counterObserver =
+        new IntersectionObserver((entries, observer) => {
+
+            entries.forEach(entry => {
+
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                const counter =
+                    entry.target;
+
+                const target =
+                    Number(counter.dataset.target);
+
+                let current = 0;
+
+                const duration = 1200;
+
+                const startTime =
+                    performance.now();
+
+                function updateCounter(now) {
+
+                    const progress =
+                        Math.min(
+                            (now - startTime) / duration,
+                            1
+                        );
+
+                    const eased =
+                        1 - Math.pow(1 - progress, 3);
+
+                    current =
+                        Math.floor(target * eased);
+
+                    counter.textContent =
+                        current;
+
+                    if (progress < 1) {
+
+                        requestAnimationFrame(
+                            updateCounter
+                        );
+
+                    } else {
+
+                        counter.textContent =
+                            target;
+
+                    }
+
+                }
+
+                requestAnimationFrame(
+                    updateCounter
+                );
+
+                observer.unobserve(counter);
+
+            });
+
+        }, {
+            threshold: 0.5
+        });
+
+
+    counters.forEach(counter => {
+
+        counterObserver.observe(counter);
+
+    });
+
+
+    /* =========================
+       FAQ ACCORDION
+    ========================== */
+
+    document.querySelectorAll('.faq-button')
+        .forEach(button => {
+
+            button.addEventListener('click', () => {
+
+                const item =
+                    button.closest('.faq-item');
+
+                const answer =
+                    item.querySelector('.faq-answer');
+
+                const icon =
+                    item.querySelector('.faq-icon');
+
+                const isOpen =
+                    !answer.classList.contains('hidden');
+
+
+                /* Close other FAQs */
+
+                document.querySelectorAll('.faq-item')
+                    .forEach(otherItem => {
+
+                        if (otherItem !== item) {
+
+                            const otherAnswer =
+                                otherItem.querySelector(
+                                    '.faq-answer'
+                                );
+
+                            const otherIcon =
+                                otherItem.querySelector(
+                                    '.faq-icon'
+                                );
+
+                            otherAnswer.classList.add(
+                                'hidden'
+                            );
+
+                            otherIcon.classList.remove(
+                                'rotate-45'
+                            );
+
+                        }
+
+                    });
+
+
+                if (isOpen) {
+
+                    answer.classList.add('hidden');
+
+                    icon.classList.remove(
+                        'rotate-45'
+                    );
+
+                } else {
+
+                    answer.classList.remove('hidden');
+
+                    icon.classList.add(
+                        'rotate-45'
+                    );
+
+                }
+
+            });
+
+        });
+
+
+    /* =========================
+       CHARACTER COUNTER
+    ========================== */
+
+    const details =
+        document.getElementById('details');
+
+    const charCount =
+        document.getElementById('charCount');
+
+    if (details && charCount) {
+
+        details.addEventListener('input', () => {
+
+            charCount.textContent =
+                `${details.value.length} / 1200`;
+
+        });
+
+    }
+
+
+    /* =========================
+       FORMSPREE FORM
+    ========================== */
+
+    const projectForm =
+        document.getElementById('projectForm');
+
+    const submitButton =
+        document.getElementById('submitButton');
+
+    const submitText =
+        document.getElementById('submitText');
+
+    const formStatus =
+        document.getElementById('formStatus');
+
+
+    if (projectForm) {
+
+        projectForm.addEventListener(
+            'submit',
+            async function(event) {
+
+                event.preventDefault();
+
+
+                /* Honeypot */
+
+                const honeypot =
+                    projectForm.querySelector(
+                        '[name="_gotcha"]'
+                    );
+
+                if (honeypot && honeypot.value.trim() !== '') {
+
+                    return;
+
+                }
+
+
+                const originalText =
+                    submitText.textContent;
+
+
+                submitButton.disabled = true;
+
+                submitButton.classList.add(
+                    'opacity-70',
+                    'cursor-not-allowed'
+                );
+
+                submitText.textContent =
+                    'Sending...';
+
+
+                formStatus.className =
+                    'hidden mt-5 rounded-xl px-4 py-3 text-sm';
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            projectForm.action,
+                            {
+                                method: 'POST',
+                                body: new FormData(
+                                    projectForm
+                                ),
+                                headers: {
+                                    'Accept':
+                                        'application/json'
+                                }
+                            }
+                        );
+
+
+                    if (response.ok) {
+
+                        formStatus.className =
+                            'mt-5 rounded-xl px-4 py-3 text-sm bg-green-500/10 border border-green-500/20 text-green-300';
+
+                        formStatus.innerHTML =
+                            '<i class="fas fa-circle-check mr-2"></i>' +
+                            'Your project inquiry has been sent successfully. Thank you!';
+
+                        projectForm.reset();
+
+                        charCount.textContent =
+                            '0 / 1200';
+
+
+                    } else {
+
+                        throw new Error(
+                            'Form submission failed'
+                        );
+
+                    }
+
+
+                } catch (error) {
+
+                    formStatus.className =
+                        'mt-5 rounded-xl px-4 py-3 text-sm bg-red-500/10 border border-red-500/20 text-red-300';
+
+                    formStatus.innerHTML =
+                        '<i class="fas fa-circle-exclamation mr-2"></i>' +
+                        'Something went wrong. Please try again or email directly at tahlilahashmi2@gmail.com.';
+
+                }
+
+
+                submitButton.disabled = false;
+
+                submitButton.classList.remove(
+                    'opacity-70',
+                    'cursor-not-allowed'
+                );
+
+                submitText.textContent =
+                    originalText;
 
             }
-
-            const n1 =
-                nodes[packet.from];
-
-            const n2 =
-                nodes[packet.from + 1];
-
-            const x =
-                n1.x +
-                (n2.x-n1.x) *
-                packet.progress;
-
-            const y =
-                n1.y +
-                (n2.y-n1.y) *
-                packet.progress;
-
-
-            ctx.fillStyle =
-                "#22d3ee";
-
-            ctx.beginPath();
-
-            ctx.arc(
-                x,
-                y,
-                4,
-                0,
-                Math.PI*2
-            );
-
-            ctx.fill();
-
-
-            ctx.shadowBlur = 18;
-            ctx.shadowColor =
-                "#22d3ee";
-
-            ctx.beginPath();
-
-            ctx.arc(
-                x,
-                y,
-                8,
-                0,
-                Math.PI*2
-            );
-
-            ctx.stroke();
-
-            ctx.shadowBlur = 0;
-
-        });
-
-
-        nodes.forEach((node,index)=>{
-
-            ctx.fillStyle =
-                "#0a0f1d";
-
-            ctx.strokeStyle =
-                "#22d3ee";
-
-            ctx.lineWidth = 2;
-
-            ctx.beginPath();
-
-            ctx.arc(
-                node.x,
-                node.y,
-                23,
-                0,
-                Math.PI*2
-            );
-
-            ctx.fill();
-            ctx.stroke();
-
-
-            ctx.fillStyle =
-                "#22d3ee";
-
-            ctx.beginPath();
-
-            ctx.arc(
-                node.x,
-                node.y,
-                7,
-                0,
-                Math.PI*2
-            );
-
-            ctx.fill();
-
-
-            ctx.fillStyle =
-                "#94a3b8";
-
-            ctx.font =
-                "11px Poppins";
-
-            ctx.textAlign =
-                "center";
-
-            ctx.fillText(
-                "Node 0" + (index+1),
-                node.x,
-                node.y + 42
-            );
-
-        });
-
-
-        requestAnimationFrame(
-            animateCloud
         );
 
     }
 
-    animateCloud();
 
-}
+    /* =========================
+       CLOUD NETWORK CANVAS
+    ========================== */
+
+    const canvas =
+        document.getElementById('networkCanvas');
+
+    if (canvas) {
+
+        const ctx =
+            canvas.getContext('2d');
+
+        let nodes = [];
+        let animationFrame;
+
+
+        function resizeCanvas() {
+
+            const rect =
+                canvas.getBoundingClientRect();
+
+            const dpr =
+                Math.min(
+                    window.devicePixelRatio || 1,
+                    2
+                );
+
+            canvas.width =
+                rect.width * dpr;
+
+            canvas.height =
+                rect.height * dpr;
+
+            ctx.setTransform(
+                dpr,
+                0,
+                0,
+                dpr,
+                0,
+                0
+            );
+
+            createNodes();
+
+        }
+
+
+        function createNodes() {
+
+            const rect =
+                canvas.getBoundingClientRect();
+
+            const count =
+                window.innerWidth < 640
+                    ? 28
+                    : 48;
+
+            nodes = [];
+
+            for (let i = 0; i < count; i++) {
+
+                nodes.push({
+
+                    x: Math.random() * rect.width,
+
+                    y: Math.random() * rect.height,
+
+                    vx:
+                        (Math.random() - .5)
+                        * .35,
+
+                    vy:
+                        (Math.random() - .5)
+                        * .35,
+
+                    radius:
+                        Math.random() * 2 + 1
+
+                });
+
+            }
+
+        }
+
+
+        function drawNetwork() {
+
+            const rect =
+                canvas.getBoundingClientRect();
+
+            ctx.clearRect(
+                0,
+                0,
+                rect.width,
+                rect.height
+            );
+
+
+            /* Update */
+
+            nodes.forEach(node => {
+
+                node.x += node.vx;
+                node.y += node.vy;
+
+
+                if (
+                    node.x < 0 ||
+                    node.x > rect.width
+                ) {
+                    node.vx *= -1;
+                }
+
+
+                if (
+                    node.y < 0 ||
+                    node.y > rect.height
+                ) {
+                    node.vy *= -1;
+                }
+
+            });
+
+
+            /* Connections */
+
+            for (
+                let i = 0;
+                i < nodes.length;
+                i++
+            ) {
+
+                for (
+                    let j = i + 1;
+                    j < nodes.length;
+                    j++
+                ) {
+
+                    const a = nodes[i];
+                    const b = nodes[j];
+
+                    const dx =
+                        a.x - b.x;
+
+                    const dy =
+                        a.y - b.y;
+
+                    const distance =
+                        Math.sqrt(
+                            dx * dx +
+                            dy * dy
+                        );
+
+                    if (distance < 125) {
+
+                        const opacity =
+                            (1 - distance / 125)
+                            * .35;
+
+                        ctx.beginPath();
+
+                        ctx.moveTo(
+                            a.x,
+                            a.y
+                        );
+
+                        ctx.lineTo(
+                            b.x,
+                            b.y
+                        );
+
+                        ctx.strokeStyle =
+                            `rgba(59,130,246,${opacity})`;
+
+                        ctx.lineWidth = .8;
+
+                        ctx.stroke();
+
+                    }
+
+                }
+
+            }
+
+
+            /* Nodes */
+
+            nodes.forEach(node => {
+
+                ctx.beginPath();
+
+                ctx.arc(
+                    node.x,
+                    node.y,
+                    node.radius,
+                    0,
+                    Math.PI * 2
+                );
+
+                ctx.fillStyle =
+                    'rgba(96,165,250,.8)';
+
+                ctx.shadowBlur = 10;
+
+                ctx.shadowColor =
+                    'rgba(59,130,246,.8)';
+
+                ctx.fill();
+
+                ctx.shadowBlur = 0;
+
+            });
+
+
+            animationFrame =
+                requestAnimationFrame(
+                    drawNetwork
+                );
+
+        }
+
+
+        resizeCanvas();
+
+        drawNetwork();
+
+
+        window.addEventListener(
+            'resize',
+            resizeCanvas
+        );
+
+    }
+
+
+    /* =========================
+       EXTERNAL LINK SECURITY
+    ========================== */
+
+    document
+        .querySelectorAll(
+            'a[target="_blank"]'
+        )
+        .forEach(link => {
+
+            link.setAttribute(
+                'rel',
+                'noopener noreferrer'
+            );
+
+        });
+
+
+    /* =========================
+       YEAR AUTO UPDATE
+    ========================== */
+
+    const currentYear =
+        new Date().getFullYear();
+
+    document
+        .querySelectorAll(
+            '[data-current-year]'
+        )
+        .forEach(element => {
+
+            element.textContent =
+                currentYear;
+
+        });
+
 
 </script>
 
